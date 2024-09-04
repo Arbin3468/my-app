@@ -1,0 +1,16 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "start:client": "cd my-react-website-otp-code && npm start",
+    "start:server": "cd my-express-server && npm start",
+    "build": "cd my-react-website-otp-code && npm run build",
+    "test": "cd my-react-website-otp-code && npm test",
+    "eject": "cd my-react-website-otp-code && npm run eject"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

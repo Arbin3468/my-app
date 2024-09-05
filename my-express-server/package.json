@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "echo 'No build step required for Express server'",
+    "predeploy": "echo 'No predeploy step for Express server'",
+    "deploy": "echo 'No deploy step for Express server'",
+    "test": "echo 'No test scripts available for Express server'"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +17,8 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "ora": "^8.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
   }
 }

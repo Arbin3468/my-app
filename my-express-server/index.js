@@ -6,20 +6,34 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    methods: ['POST'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+}
+app.use(cors(corsOptions));
+
 app.post('/verify-code', (req, res) => {
     const { code } = req.body;
 
-    if (code.length !== 6 || code[5] === '7') {
-        return res.status(400).json({ message: 'Verification Error' });
+    // Check if the code is a string of exactly 6 digits
+    if (typeof code !== 'string' || code.length !== 6 || !/^\d{6}$/.test(code)) {
+        return res.status(400).json({ message: 'Verification Error: Code must be a 6-digit number.' });
     }
 
+    if (code[5] === '7') {
+        return res.status(400).json({ message: 'Verification Error: Code cannot end with 7.' });
+    }
+
+    // If code passes both checks
     return res.status(200).json({ message: 'Success' });
 });
 
 const PORT = process.env.PORT || 5000;
 
 (async () => {
-    const ora = (await import('ora')).default;  // Dynamically import ora
+    const ora = (await import('ora')).default;
     const spinner = ora(`Starting server on port ${PORT}`).start();
 
     app.listen(PORT, () => {

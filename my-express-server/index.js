@@ -17,6 +17,12 @@ app.post('/verify-code', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port 5000`));
 
+(async () => {
+    const ora = (await import('ora')).default;  // Dynamically import ora
+    const spinner = ora(`Starting server on port ${PORT}`).start();
 
+    app.listen(PORT, () => {
+        spinner.succeed(`Server running on port ${PORT}`);
+    });
+})();

@@ -1,4 +1,4 @@
-{
+{ "homepage": "http://Arbin2658.github.io/my-app",
   "name": "my-app",
   "version": "1.0.0",
   "private": true,
@@ -6,11 +6,22 @@
     "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "start:client": "cd my-react-website-otp-code && npm start",
     "start:server": "cd my-express-server && npm start",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "build": "cd my-react-website-otp-code && npm run build",
     "test": "cd my-react-website-otp-code && npm test",
     "eject": "cd my-react-website-otp-code && npm run eject"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "ora": "^8.1.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.3"
   }
 }

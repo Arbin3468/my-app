@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 function SuccessPage() {
     return (
         <div className="success-page">

@@ -1,12 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
-
-
+const corsOptions = {
+    origin: '*', // Adjust this to your frontend's origin
+    methods: ['GET', 'POST'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+}
+app.use(cors(corsOptions));
 
 app.post('/verify-code', (req, res) => {
     const { code } = req.body;

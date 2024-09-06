@@ -1,18 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
 
-// CORS options (modify as needed)
-const corsOptions = {
-    origin: 'http://localhost:3000', // Adjust this to your frontend's origin
-    methods: ['GET', 'POST'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], 
-}
-app.use(cors(corsOptions));
+
+
 
 app.post('/verify-code', (req, res) => {
     const { code } = req.body;
@@ -26,7 +20,6 @@ app.post('/verify-code', (req, res) => {
         return res.status(400).json({ message: 'Verification Error: Code cannot end with 7.' });
     }
 
-    // If code passes both checks
     return res.status(200).json({ message: 'Success' });
 });
 
